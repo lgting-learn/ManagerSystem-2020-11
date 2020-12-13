@@ -19,6 +19,55 @@
     <link th:href="@{css/font-awesome.min.css?v=4.4.0}" rel="stylesheet">
     <link th:href="@{css/animate.css}" rel="stylesheet">
     <link th:href="@{css/style.css?v=4.1.0}" rel="stylesheet">
+    <style type="text/css">
+   body.fixed-sidebar .navbar-static-side, body.canvas-menu .navbar-static-side {
+    width: 320px;
+}
+
+.navbar-default .nav>li>a:hover, .navbar-default .nav>li>a {
+    font-size: 14px;
+}
+
+#side-menu .nav-second-level li, .nav-third-level li {
+    height: 50px;
+}
+
+.navbar-default .nav>li>a:hover, .navbar-default .nav>li>a:focus {
+    background-color: #48576a;
+    height: 50px;
+}
+
+.J_menuItem {
+    height: 50px!important;
+    line-height: 50px!important;
+}
+<!--蓝字-->
+.J_menuItem:hover {
+<!--    color: #20a0ff!important;-->
+}
+
+#page-wrapper {
+    margin-left: 320px;
+}
+
+.nav-second-level li a {
+    padding: 0px 15px 0px 46px;
+    overflow: hidden;
+}
+
+.J_menuItem:hover, .J_menuItem:focus {
+    background-color: #48576a;
+}
+.sidebar-collapse {
+    background-color: rgb(50, 64, 87);
+}
+.nav > li > a{
+font-weight:500!important;
+}
+.nav-second-level li:last-child{
+     margin-bottom: 0px;
+}
+    </style>
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -70,13 +119,9 @@
                 </li>
                 <li>
                     <a href="mailbox.html"><i class="fa fa-plus"></i> <span class="nav-label">添加数据 </span>
-                      </a>
+                    </a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="mailbox.html">收件箱</a>
-                        </li>
-                        <li><a class="J_menuItem" href="mail_detail.html">查看邮件</a>
-                        </li>
-                        <li><a class="J_menuItem" href="mail_compose.html">写信</a>
+                        <li><a class="J_menuItem" th:href="@{/addShop}">添加店铺</a>
                         </li>
                     </ul>
                 </li>

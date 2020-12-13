@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!--引入CSS-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/webuploader.css}">
+    <!-- Custom styles for this template -->
+    <!--    <link th:href="@{/css/dashboard.css}" rel="stylesheet">-->
+    <style type="text/css">
+  .accordion-inner {
+    margin-top: 10px;
+    display: flex;
+}
+
+.accordion-inner label:nth-child(1) {
+    white-space: nowrap;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.spinner {
+    width: 100px;
+}
+
+.spinner input {
+    text-align: right;
+}
+
+.input-group-btn-vertical {
+    position: relative;
+    white-space: nowrap;
+    width: 1%;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.input-group-btn-vertical>.btn {
+    display: block;
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    margin-left: -1px;
+    position: relative;
+    border-radius: 0;
+}
+
+.input-group-btn-vertical>.btn:first-child {
+    border-top-right-radius: 4px;
+}
+
+.input-group-btn-vertical>.btn:last-child {
+    margin-top: -2px;
+    border-bottom-right-radius: 4px;
+}
+
+.input-group-btn-vertical i {
+    position: absolute;
+    top: 0;
+    left: 4px;
+}
+
+.radio-left {
+    margin-right: 20px;
+}
+.ipt_num{
+    width: 68px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+    </style>
+</head>
+
+<body>
+<div class="container-fluid container">
+    <div class="row">
+        <form th:action="@{/createShop}" method="post">
+            <div class="accordion-inner row">
+                <label>店铺名称</label>
+
+                <input type="text" class="form-control" placeholder="店铺名称" name="name">
+            </div>
+            <div class="accordion-inner row">
+                <label>详细地址</label>
+                <input type="text" class="form-control" placeholder="详细地址" name="address">
+            </div>
+            <div class="accordion-inner row">
+                <label>联系电话</label>
+                <input type="text" class="form-control" placeholder="联系电话" name="phone">
+            </div>
+            <div class="accordion-inner row">
+                <label>店铺简介</label>
+                <input type="text" class="form-control" placeholder="店铺简介" name="introduce">
+            </div>
+            <div class="accordion-inner row">
+                <label>店铺分类</label>
+                <select class="form-control" name="category">
+                    <option value="0">异国料理</option>
+                    <option value="1">快餐便当</option>
+                    <option value="2">小吃夜宵</option>
+                </select>
+            </div>
+
+            <div class="accordion-inner  row">
+                <label>配送费</label><br>
+                <div class="btn-group spinner" style="display: flex;">
+                    <button type="button" class="btn btn-default">-</button>
+                    <input type="text" class="btn btn-default form-control ipt_num" value="0" name="send_fee">
+                    <button type="button" class="btn btn-default">+</button>
+                </div>
+            </div>
+            <div class="accordion-inner row">
+                <label>营业时间</label>
+                <div class="col-sm-10 row+">
+                    <!--时间选择器 隐藏input 不可删除-->
+                    <input id="hello" type="hidden"/>
+                    <input placeholder="开始日期" class="form-control layer-date" id="start" name="start_time">
+                    <label class="laydate-icon" style="margin-right:30px;"></label>
+                    <input placeholder="结束日期" class="form-control layer-date" id="end" name="end_time">
+                    <label class="laydate-icon"></label>
+                </div>
+            </div>
+            <div class="accordion-inner row">
+                <button type="submit" class="btn btn-success" style="margin-top:10px">立即创建</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+<!-- 自定义js -->
+<script src="/js/content.js?v=1.0.0"></script>
+<!-- layerDate plugin javascript -->
+<script src="/js/plugins/layer/laydate/laydate.js"></script>
+<script>
+(function ($) {
+ //外部js调用
+        laydate({
+            elem: '#hello', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+            event: 'focus' //响应事件。如果没有传入event，则按照默认的click
+        });
+
+        //日期范围限制
+        var start = {
+            elem: '#start',
+            format: 'YYYY/MM/DD hh:mm:ss',
+            min: laydate.now(), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function (datas) {
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        };
+        var end = {
+            elem: '#end',
+            format: 'YYYY/MM/DD hh:mm:ss',
+            min: laydate.now(),
+            max: '2099-06-16 23:59:59',
+            istime: true,
+            istoday: false,
+            choose: function (datas) {
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            }
+        };
+        laydate(start);
+        laydate(end);
+
+  $('.spinner .btn:first-of-type').on('click', function() {
+    $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
+  });
+  $('.spinner .btn:last-of-type').on('click', function() {
+    $('.spinner input').val( parseInt($('.spinner input').val(), 10) + 1);
+  });
+})(jQuery);
+</script>
+</body>
+
+</html>

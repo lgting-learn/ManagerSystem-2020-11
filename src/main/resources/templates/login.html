@@ -1,62 +1,47 @@
 <!DOCTYPE html>
-<html>
-
+<!-- saved from url=(0051)https://getbootstrap.com/docs/4.0/examples/sign-in/ -->
+<!--引入命名空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    <title> - 登录</title>
-    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://getbootstrap.com/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <link rel="shortcut icon" href="favicon.ico"> <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <title>Signin Template for Bootstrap</title>
 
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css?v=4.1.0" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <meta http-equiv="refresh" content="0;ie.html" />
-    <![endif]-->
-    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link  th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- css引用方式 -->
+    <link th:href="@{/css/signin.css}" rel="stylesheet">
 </head>
 
-<body class="gray-bg">
-
-    <div class="middle-box text-center loginscreen  animated fadeInDown">
-        <div>
-            <div>
-
-                <h1 class="logo-name">h</h1>
-
-            </div>
-            <h3>欢迎使用 hAdmin</h3>
-
-            <form class="m-t" role="form" action="index.html">
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="用户名" required="">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="密码" required="">
-                </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
-
-
-                <p class="text-muted text-center"> <a href="login.html#"><small>忘记密码了？</small></a> | <a href="register.html">注册一个新账号</a>
-                </p>
-
-            </form>
-        </div>
+<body class="text-center">
+<form class="form-signin" th:action="@{/user/login}">
+    <img class="mb-4" th:src="@{/img/bootstrap-solid.svg}" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal" th:text = "#{login.tip}"></h1>
+    <!--    错误提示 msg不为空才显示-->
+    <p style="color:red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+    <input type="" name="username" id="inputEmail" class="form-control" th:placeholder="#{login.username}" required="" autofocus="">
+    <input type="password" name="password" id="inputPassword" class="form-control" th:placeholder="#{login.password}" required="">
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me" th:text="#{login.remember}" class="check_box">
+        </label>
     </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.btn}">  </button>
+    <!--    携带国家化参数-->
+    <div class="index_btm"> <a th:href = "@{index.html(l='zh_CN')}">中文</a>
+        <a th:href = "@{index.html(l='en_US')}">Enlish</a></div>
 
-    <!-- 全局js -->
-    <script src="js/jquery.min.js?v=2.1.4"></script>
-    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+</form>
 
-    
-    
 
 </body>
-
 </html>

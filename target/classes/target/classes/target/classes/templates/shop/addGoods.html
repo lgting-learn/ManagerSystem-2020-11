@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!--引入CSS-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/webuploader.css}">
+    <!-- Custom styles for this template -->
+    <!--    <link th:href="@{/css/dashboard.css}" rel="stylesheet">-->
+    <style type="text/css">
+ .accordion-inner {
+    margin-top: 10px;
+    display: flex;
+}
+
+.accordion-inner label:nth-child(1) {
+    white-space: nowrap;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.spinner {
+    width: 100px;
+}
+
+.spinner input {
+    text-align: right;
+}
+
+.input-group-btn-vertical {
+    position: relative;
+    white-space: nowrap;
+    width: 1%;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.input-group-btn-vertical>.btn {
+    display: block;
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    margin-left: -1px;
+    position: relative;
+    border-radius: 0;
+}
+
+.input-group-btn-vertical>.btn:first-child {
+    border-top-right-radius: 4px;
+}
+
+.input-group-btn-vertical>.btn:last-child {
+    margin-top: -2px;
+    border-bottom-right-radius: 4px;
+}
+
+.input-group-btn-vertical i {
+    position: absolute;
+    top: 0;
+    left: 4px;
+}
+
+.radio-left {
+    margin-right: 20px;
+}
+.ipt_num{
+    width: 68px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+    </style>
+</head>
+
+<body>
+<div class="container-fluid container">
+    <div class="row">
+            <form th:action="@{/createShopAddGoods}" method="post">
+                <!--                隐藏域-->
+                <input name="restaurant_id" th:value="${restaurant_id}">
+
+                <div>选择食品种类</div>
+                <div class="container-fluid">
+                    <div class="accordion" id="accordion2">
+                        <div class="accordion-group bs-example">
+                            <div class="accordion-inner row">
+                                <label>食品种类</label>
+                                <select class="form-control" name="category_id">
+                                    <option th:each="item:${classifyFoods}" th:value="${item.id}">
+                                        [[${item.name}]]
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
+                                <div class="accordion-inner row">
+                                    <label>种类描述</label>
+                                    <input type="text" class="form-control" placeholder="Text input">
+
+                                </div>
+                            </div>
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                                   href="#collapseOne">
+                                    添加食品种类
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div>添加食品</div>
+                <div class="container-fluid">
+                    <div class="accordion" id="accordion3">
+                        <div class="accordion-group bs-example">
+                            <div class="accordion-inner row">
+                                <label>食品名称</label>
+                                <input type="text" class="form-control" placeholder="" name="name">
+
+                            </div>
+                            <div class="accordion-inner row">
+                                <label>食品活动</label>
+                                <input type="text" class="form-control" placeholder="Text input">
+
+                            </div>
+                            <div class="accordion-inner row">
+                                <label>食品详情</label>
+                                <input type="text" class="form-control" placeholder="Text input" name="introduce">
+
+                            </div>
+
+                            <!--dom结构部分-->
+                            <div class="row" style="height: 30px;margin-top:20px;margin-bottom:20px;">
+                                <input id="file-Portrait1" type="file">
+                            </div>
+
+                            <div class="accordion-inner row">
+                                <label>食品特点</label>
+                                <select class="form-control">
+                                    <option>新品</option>
+                                    <option>招牌</option>
+                                </select>
+
+                            </div>
+                            <div class="accordion-inner  row">
+                                <label>食品规格</label><br>
+                                <div class="form-check form-check-inline radio-left">
+                                    <input checked="true" type="radio" class="form-check-input " name="" value="1">
+                                    <label class="form-check-label">单规格</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-input" name="" value="0">
+                                    <label class="form-check-label">多规格</label>
+                                </div>
+                            </div>
+                            <div class="accordion-inner  row">
+                                <label>包装费</label><br>
+                                <div class="btn-group spinner" style="display: flex;">
+                                    <button type="button" class="btn btn-default">-</button>
+                                    <input type="text" class="btn btn-default form-control ipt_num" value="0">
+                                    <button type="button" class="btn btn-default">+</button>
+                                </div>
+                            </div>
+                            <div class="accordion-inner row">
+
+                                <label>价格</label><br>
+                                <input type="text" class="form-control" placeholder="请输入价格" name="price">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success" style="margin-top:10px">确认添加食品</button>
+            </form>
+
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js?v=3.3.6"></script>
+<!--引入JS-->
+<script type="text/javascript" src="/js/webuploader.js"></script>
+<script>
+			feather.replace()
+//初始化fileinput控件（第一次初始化）
+function initFileInput(ctrlName, uploadUrl) {
+    var control = $('#' + ctrlName);
+    control.fileinput({
+        language: 'zh', //设置语言
+        uploadUrl: uploadUrl, //上传的地址
+        allowedFileExtensions : ['jpg', 'png','gif'],//接收的文件后缀
+        showUpload: false, //是否显示上传按钮
+        showCaption: false,//是否显示标题
+        browseClass: "btn btn-primary", //按钮样式
+        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+    });
+}
+
+
+
+
+
+</script>
+
+<!-- Graphs -->
+<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
+<script>
+
+
+(function ($) {
+  $('.spinner .btn:first-of-type').on('click', function() {
+    $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
+  });
+  $('.spinner .btn:last-of-type').on('click', function() {
+    $('.spinner input').val( parseInt($('.spinner input').val(), 10) + 1);
+  });
+
+			var ctx = document.getElementById("myChart");
+			var myChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+					datasets: [{
+						data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+						lineTension: 0,
+						backgroundColor: 'transparent',
+						borderColor: '#007bff',
+						borderWidth: 4,
+						pointBackgroundColor: '#007bff'
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: false
+							}
+						}]
+					},
+					legend: {
+						display: false,
+					}
+				}
+			});
+//初始化fileinput控件（第一次初始化）
+initFileInput("file-Portrait", "/User/EditPortrait");
+})(jQuery);
+
+
+
+
+
+</script>
+
+</body>
+
+</html>
