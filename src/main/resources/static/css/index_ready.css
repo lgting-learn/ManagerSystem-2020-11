@@ -1,0 +1,14 @@
+.nav_left_link_color {
+    color: #869fb1;
+}
+
+.nav_left .card {
+    border-radius: 0;
+}
+.nav_left_link_color:hover{
+    color: white;
+}
+
+.sidebar_bg {
+    background-color: rgb(50, 64, 87)
+}

@@ -32,7 +32,6 @@ public class ShopController {
     //进入添加店铺页面
     @RequestMapping("/addShop")
     public String addShop() {
-        System.out.println("进入添加店铺");
         return "/shop/addShop";
     }
 
@@ -112,7 +111,6 @@ public class ShopController {
         String end_time = request.getParameter("end_time");
         String sql = "insert into elemensys.shop(name,address,introduce,phone,category,start_time,end_time)" +
                 "values ('" + name + "','" + address + "','" + introduce + "','" + phone + "','" + category + "','" + start_time + "','" + end_time + "')";
-        System.out.println("添加店铺sql==>"+sql);
         jdbcTemplate.update(sql);
         return "redirect:/shopList";
     }
