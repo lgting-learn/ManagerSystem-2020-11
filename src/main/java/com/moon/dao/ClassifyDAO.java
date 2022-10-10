@@ -644,7 +644,7 @@ public class ClassifyDAO {
 //        String order_status = request.getParameter("order_status");//订单状态
         String user_id = request.getParameter("user_id");//用户id
 //        String sql = "select all_price,order_status,restaurant_name,shop_img,trading_time from elemensys.order where user_id= '" + user_id + "' and order_status='" + order_status + "' order by trading_time desc";
-        String sql = "select all_price,order_status,restaurant_name,shop_img,trading_time from elemensys.order where user_id= '" + user_id + "' order by trading_time desc";
+        String sql = "select all_price,order_status,restaurant_name,shop_img,trading_time,id from elemensys.order where user_id= '" + user_id + "' order by trading_time desc";
 
         List<Map<String, Object>> results = jdbcTemplate.queryForList(sql);
         return results;
@@ -700,7 +700,14 @@ public class ClassifyDAO {
         return reuslt;
     }
 
-    //搜索 查找店铺名称
+    /**
+     * 功能描述:
+     * @param: request
+     * @Return: java.lang.Object
+     * @Author: 86183
+     * @Date: 2022-08-18 8:52
+     * @deprecated:搜索 查找店铺名称
+     */
     @PostMapping("/api/searchShop")
     public Object searchShop(HttpServletRequest request) {
         String key = request.getParameter("key");
@@ -720,5 +727,6 @@ public class ClassifyDAO {
         obj.put("total", num_result);
         return obj;
     }
+
 
 }
